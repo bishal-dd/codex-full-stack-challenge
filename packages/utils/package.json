@@ -1,0 +1,16 @@
+{
+  "name": "@verso/utils",
+  "version": "1.0.0",
+  "license": "ISC",
+  "type": "module",
+  "exports": {
+    "./*": "./lib/*"
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json"
+  },
+  "dependencies": {
+    "@aws-lambda-powertools/logger": "^2.7.0",
+    "@sinclair/typebox": "^0.33.7"
+  }
+}

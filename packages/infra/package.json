@@ -1,0 +1,20 @@
+{
+  "name": "@verso/infra",
+  "version": "1.0.0",
+  "license": "ISC",
+  "type": "module",
+  "exports": {
+    "./*": "./lib/*"
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "clean": "rm -rf lib"
+  },
+  "dependencies": {
+    "@verso/entity": "workspace:*",
+    "@verso/command": "workspace:*",
+    "@verso/utils": "workspace:*",
+    "@sinclair/typebox": "^0.33.7",
+    "http-errors": "^2.0.0"
+  }
+}
