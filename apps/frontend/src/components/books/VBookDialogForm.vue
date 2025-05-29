@@ -25,6 +25,7 @@ const props = defineProps({
   initialTitle: { type: String, required: true },
   initialAuthor: { type: String, required: true },
   initialBlurb: { type: String, required: true },
+  initialCount: { type: Number, required: true },
 });
 
 const emits = defineEmits(['submit', 'back']);
@@ -34,6 +35,7 @@ const formSchema = toTypedSchema(
     title: z.string().min(2).max(50),
     author: z.string().min(2).max(50),
     blurb: z.string().max(250),
+    count: z.number(),
   }),
 );
 
@@ -53,6 +55,7 @@ const initaliseForm = () => {
     title: props.initialTitle,
     author: props.initialAuthor,
     blurb: props.initialBlurb,
+    count: props.initialCount,
   });
 };
 </script>
@@ -109,6 +112,23 @@ const initaliseForm = () => {
           </FormField>
           <FormField
             v-slot="{ componentField }"
+            name="count"
+          >
+            <FormItem class="w-full">
+              <FormLabel>Copies Available</FormLabel>
+              <FormControl v-auto-animate>
+                <Input
+                  type="number"
+                  placeholder="0"
+                  v-bind="componentField"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          </FormField>
+
+          <FormField
+            v-slot="{ componentField }"
             name="blurb"
           >
             <FormItem class="w-full">
@@ -132,9 +152,7 @@ const initaliseForm = () => {
               Cancel
             </Button>
           </DialogClose>
-          <Button type="submit">
-            Submit
-          </Button>
+          <Button type="submit"> Submit </Button>
         </DialogFooter>
       </form>
     </DialogContent>
