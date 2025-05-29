@@ -3,19 +3,26 @@ import VBookList from '@/components/books/VBookList.vue';
 import { Plus } from 'lucide-vue-next';
 import { Button } from '@/components/ui/button';
 import { useFetchBooks } from '@/hooks/useFetchBooks';
+import VBookCreateDialogForm from '@/components/books/VBookCreateDialogForm.vue';
+import { useAuth } from '@/hooks/useAuth';
+import { useCreateBook } from '@/hooks/useCreateBook';
+import type { Book } from '@verso/entity/books/entity.js';
 
 const { books, isLoading } = useFetchBooks();
+const { isAdmin } = useAuth();
+const { mutate } = useCreateBook();
+
+const onSubmit = (data: Omit<Book, 'bookId'>) => {
+  mutate(data);
+};
 </script>
 
 <template>
   <div class="flex space-x-4 items-center items-start">
     <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight">Books</h1>
-    <Button
-      size="icon"
-      aria-label="New Book"
-    >
-      <Plus stroke-width="3" />
-    </Button>
+    <div v-if="isAdmin">
+      <VBookCreateDialogForm @submit="onSubmit" />
+    </div>
   </div>
   <p v-if="isLoading">Loading...</p>
   <VBookList

@@ -9,7 +9,9 @@ import {
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 import { Value } from '@sinclair/typebox/value';
 import { CreateBook, GetBook, ListBooks, UpdateBook } from '@verso/command/books/service.js';
+import { Book } from '@verso/entity/books/entity.js';
 import { logger } from '@verso/utils/logger.js';
+import crypto from 'crypto';
 import { BookRecord, toBookRecord, toBookRecordKey } from './record.js';
 
 export const listBooks: ListBooks = async () => {
@@ -76,8 +78,8 @@ export const getBook: GetBook = async bookId => {
 };
 
 export const createBook: CreateBook = async input => {
-  const book = {
-    bookId: Math.floor(100000 + Math.random() * 900000).toString(),
+  const book: Book = {
+    bookId: crypto.randomUUID(),
     ...input,
   };
 
