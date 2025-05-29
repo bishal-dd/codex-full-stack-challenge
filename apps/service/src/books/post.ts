@@ -6,7 +6,7 @@ import { createBook } from '@verso/infra/books/service.js';
 
 const eventSchema = Type.Object({
   httpMethod: Type.Literal('POST'),
-  body: Book,
+  body: Type.Omit(Book, ['bookId']),
 });
 const responseSchema = Book;
 const requestHandler = buildRequestHandler({ createBook });

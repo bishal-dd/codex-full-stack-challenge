@@ -5,13 +5,9 @@ import { useMutation, useQueryClient } from '@tanstack/vue-query';
 import { Book } from '@verso/entity/books/entity.js';
 
 const createBook = async (input: Omit<Book, 'bookId'>) => {
-  const book = {
-    bookId: crypto.randomUUID(),
-    ...input,
-  };
   const response = await fetcher(`books`, {
     method: 'POST',
-    body: JSON.stringify(book),
+    body: JSON.stringify(input),
   });
 
   return await parser(response, Book); // Expect server to return the full Book with bookId
