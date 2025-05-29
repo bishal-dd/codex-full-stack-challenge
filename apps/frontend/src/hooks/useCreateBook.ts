@@ -13,7 +13,6 @@ const createBook = async (input: Omit<Book, 'bookId'>) => {
     method: 'POST',
     body: JSON.stringify(book),
   });
-  console.log('createBook response', response);
 
   return await parser(response, Book); // Expect server to return the full Book with bookId
 };

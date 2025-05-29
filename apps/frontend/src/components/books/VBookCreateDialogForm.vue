@@ -26,7 +26,7 @@ const formSchema = toTypedSchema(
   z.object({
     title: z.string().min(2).max(50),
     author: z.string().min(2).max(50),
-    blurb: z.string().max(250).optional(),
+    blurb: z.string().max(250),
     count: z.number().min(0),
   }),
 );

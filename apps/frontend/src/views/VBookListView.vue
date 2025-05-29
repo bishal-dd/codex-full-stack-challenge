@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import VBookList from '@/components/books/VBookList.vue';
-import { Plus } from 'lucide-vue-next';
-import { Button } from '@/components/ui/button';
 import { useFetchBooks } from '@/hooks/useFetchBooks';
 import VBookCreateDialogForm from '@/components/books/VBookCreateDialogForm.vue';
 import { useAuth } from '@/hooks/useAuth';
