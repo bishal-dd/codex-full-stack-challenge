@@ -9,9 +9,7 @@ const { books, isLoading } = useFetchBooks();
 
 <template>
   <div class="flex space-x-4 items-center items-start">
-    <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight">
-      Books
-    </h1>
+    <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight">Books</h1>
     <Button
       size="icon"
       aria-label="New Book"
@@ -19,9 +17,7 @@ const { books, isLoading } = useFetchBooks();
       <Plus stroke-width="3" />
     </Button>
   </div>
-  <p v-if="isLoading">
-    Loading...
-  </p>
+  <p v-if="isLoading">Loading...</p>
   <VBookList
     v-else-if="books"
     class="pt-8"

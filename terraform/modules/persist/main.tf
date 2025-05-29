@@ -135,7 +135,8 @@ resource "aws_dynamodb_table_item" "test_data" {
           "bookId": { "S": "${each.key}" },
           "title": { "S": "${each.value.title}" },
           "author": { "S": "${each.value.author}" },
-          "blurb": { "S": "${each.value.blurb}" }
+          "blurb": { "S": "${each.value.blurb}" },
+          "count": { "N": "0" }
       }
     }
   }

@@ -18,8 +18,8 @@ defineProps<{
         :title="book.title"
         :author="book.author"
         :blurb="book.blurb"
+        :count="book.count"
       />
     </template>
   </div>
 </template>
-

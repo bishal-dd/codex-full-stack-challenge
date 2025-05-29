@@ -35,6 +35,9 @@ resource "terraform_data" "upload" {
       aws s3 sync dist/ s3://${var.cloudfront_bucket_name} --delete
     EOT
     working_dir = local.frontend_dir
+     environment = {
+      AWS_PROFILE = "codex-challenge"
+    }
   }
 }
 
@@ -45,6 +48,9 @@ resource "terraform_data" "invalidate" {
 
   provisioner "local-exec" {
     command = "aws cloudfront create-invalidation --distribution-id ${var.cloudfront_distribution_id} --paths '/'"
+     environment = {
+      AWS_PROFILE = "codex-challenge"
+    }
   }
 }
 
@@ -63,5 +69,8 @@ VITE_COGNITO_CLIENT_ID=${var.user_pool_client_id}
 VITE_AWS_REGION=${data.aws_region.current.name}
 VITE_API_URL=${var.service_api_url}" > .env.local
     EOF
+     environment = {
+      AWS_PROFILE = "codex-challenge"
+    }
   }
 }

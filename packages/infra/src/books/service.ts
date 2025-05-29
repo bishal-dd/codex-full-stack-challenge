@@ -75,8 +75,23 @@ export const getBook: GetBook = async bookId => {
   return item ? Value.Parse(BookRecord, unmarshall(item)).book : undefined;
 };
 
-export const createBook: CreateBook = async book => {
-  // TODO: Implement
-  logger.info('Create book not implemented', { book });
-  return Promise.reject(new Error('Not implemented'));
+export const createBook: CreateBook = async input => {
+  const book = {
+    bookId: Math.floor(100000 + Math.random() * 900000).toString(),
+    ...input,
+  };
+
+  const item = marshall(toBookRecord(book));
+
+  const command = new PutItemCommand({
+    TableName: TableName,
+    Item: item,
+    ConditionExpression: 'attribute_not_exists(PK)', // Ensure no overwrite
+  });
+
+  logger.info('Creating book in DynamoDB', { input: command.input, book });
+
+  await DbClient.send(command);
+
+  return book;
 };

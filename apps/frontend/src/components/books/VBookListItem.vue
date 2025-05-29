@@ -9,6 +9,7 @@ const props = defineProps({
   bookId: { type: String, required: true },
   title: { type: String, required: true },
   author: { type: String, required: true },
+  count: { type: Number, required: true },
 });
 
 const onClick = () => {
@@ -18,16 +19,17 @@ const onClick = () => {
 
 <template>
   <Card
-    class="hover:bg-secondary cursor-pointer"
+    class="hover:bg-muted transition-all duration-200 cursor-pointer shadow-sm rounded-xl border border-border p-4"
     @click="onClick"
   >
-    <CardHeader>
-      <CardTitle>
-        {{ props.title }}
-      </CardTitle>
-      <CardDescription> {{ props.author }} </CardDescription>
+    <CardHeader class="p-0">
+      <div class="flex flex-col gap-1">
+        <CardTitle class="text-lg font-semibold text-foreground">
+          {{ props.title }}
+        </CardTitle>
+        <CardDescription class="text-sm text-muted-foreground"> by {{ props.author }} </CardDescription>
+        <CardDescription class="text-sm text-muted-foreground"> {{ props.count }} Copies Available </CardDescription>
+      </div>
     </CardHeader>
-
-    <CardContent />
   </Card>
 </template>
