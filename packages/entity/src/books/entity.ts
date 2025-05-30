@@ -6,6 +6,7 @@ export const Book = Type.Object({
   author: Type.String(),
   blurb: Type.String(),
   count: Type.Number(),
+  borrowers: Type.Optional(Type.Array(Type.String())),
 });
 
 export type Book = Static<typeof Book>;

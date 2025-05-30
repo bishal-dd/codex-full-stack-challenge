@@ -7,6 +7,7 @@ import { useRoute, useRouter } from 'vue-router';
 const JwtSchema = Type.Object({
   'exp': Type.Number(),
   'custom:admin': Type.Optional(Type.String()),
+  'cognito:username': Type.String(),
 });
 
 function parseJwt(token: string) {
@@ -33,7 +34,9 @@ export function useAuth() {
   const isAuthenticated = () => parsedJwt.value && parsedJwt.value.exp * 1000 > Date.now();
   const isAdmin =
     parsedJwt.value !== null && typeof parsedJwt.value === 'object' && parsedJwt.value['custom:admin'] === 'true';
-
+  const userId = computed(() =>
+    parsedJwt.value && typeof parsedJwt.value === 'object' ? parsedJwt.value['cognito:username'] : null,
+  );
   const route = useRoute();
   const router = useRouter();
 
@@ -79,6 +82,7 @@ export function useAuth() {
   });
 
   return {
+    userId: userId.value,
     isAdmin,
     jwtToken,
     isAuthenticated,
