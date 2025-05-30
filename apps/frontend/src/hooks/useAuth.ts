@@ -32,8 +32,9 @@ export function useAuth() {
 
   const parsedJwt = computed(() => jwtToken.value && parseJwt(jwtToken.value));
   const isAuthenticated = () => parsedJwt.value && parsedJwt.value.exp * 1000 > Date.now();
-  const isAdmin =
-    parsedJwt.value !== null && typeof parsedJwt.value === 'object' && parsedJwt.value['custom:admin'] === 'true';
+  const isAdmin = computed(
+    () => parsedJwt.value !== null && typeof parsedJwt.value === 'object' && parsedJwt.value['custom:admin'] === 'true',
+  );
   const userId = computed(() =>
     parsedJwt.value && typeof parsedJwt.value === 'object' ? parsedJwt.value['cognito:username'] : null,
   );

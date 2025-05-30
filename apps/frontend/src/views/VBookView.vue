@@ -71,9 +71,9 @@ const onSubmit = (data: Book) => {
       class="mt-6 pl-8"
     >
       <button
-        @click="handleBorrow"
-        :disabled="isBorrowing"
         class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded disabled:opacity-50"
+        :disabled="isBorrowing"
+        @click="handleBorrow"
       >
         <span v-if="isBorrowing">Borrowing...</span>
         <span v-else>Borrow this Book</span>
@@ -86,9 +86,9 @@ const onSubmit = (data: Book) => {
       class="mt-6 pl-8"
     >
       <button
-        @click="handleReturn"
-        :disabled="isReturning"
         class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded disabled:opacity-50"
+        :disabled="isReturning"
+        @click="handleReturn"
       >
         <span v-if="isReturning">Returning...</span>
         <span v-else>Return this Book</span>

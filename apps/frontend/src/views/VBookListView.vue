@@ -16,7 +16,7 @@ const onSubmit = (data: Omit<Book, 'bookId'>) => {
 </script>
 
 <template>
-  <div class="flex space-x-4 items-center items-start">
+  <div class="flex space-x-4 items-start">
     <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight">Books</h1>
     <div v-if="isAdmin">
       <VBookCreateDialogForm @submit="onSubmit" />
