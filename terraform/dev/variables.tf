@@ -1,6 +1,7 @@
 variable "region" {
   description = "AWS Region (e.g ap-southeast-2)"
   type        = string
+  default     = "ap-southeast-2"
 }
 
 variable "stage" {
@@ -11,10 +12,4 @@ variable "stage" {
 variable "options" {
   type    = map(any)
   default = {}
-}
-
-variable "aws_profile" {
-  description = "AWS CLI profile to use"
-  type        = string
-  default     = "codex-challenge"
 }
